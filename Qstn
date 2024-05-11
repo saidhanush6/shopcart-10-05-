@@ -1,0 +1,50 @@
+ProductCategories
+This table stores different product categories.
+prct_id int
+prct_title v(100)
+prct_desc v(255)
+
+HSNCodes
+This table stores all hsn code wise GST
+hsnc_id int AUTO PK
+hsnc_hsncode v(20) Actual HSN Code
+hsnc_gstc_percentage numeric
+
+Products
+This table stores various product info
+Prod_id int AUTO
+prod_title v(100)
+prod_prct_id int FK
+prod_hsnc_id int FK
+prod_brand v(100)
+prod_image image
+
+ProductStock
+This table stores the Live stock available.
+prod_id int
+prod_batchno v(20)
+prod_price numeric
+prod_stock int //qty available
+prod_mrp numeric
+
+OrderValueWiseShippingCharges
+This table stores Order Value wise shipping charges. GST to be calculated on shipping charegs. First 
+distribute the order shipping charges to all the products in that order on prorata basis, then apply the 
+respective gst of that product on shipping too. Finally consolidate all the individual shipping charges 
+along with GST to arrive full shipping charges wity GST.
+orvl_id int PK
+orvl_from numeric 0
+orvl_to numeric 2000
+orvl_shippingamount numeric 100
+
+ServiceableRegions
+This table stores all serviceable regions with the respective covering pincodes
+srrg_id int
+srrg_name v(100)
+srrg_pinfrom int(6)
+srrg_pinto int(6)
+
+ProductCategoryWiseServiceableRegions
+This table stores different product catagory wise serviceable regions.
+prct_id int
+srrg_id int CPk(1,2)
